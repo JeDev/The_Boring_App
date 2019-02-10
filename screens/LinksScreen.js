@@ -27,7 +27,7 @@ export default class LinksScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Gif: 'start',
+      Gif: 'https://media.giphy.com/media/OF0yOAufcWLfi/giphy.gif',
       search: 'rover',
       previousGif: '',
       previousButton: false,
@@ -58,12 +58,15 @@ export default class LinksScreen extends React.Component {
     fetch('https://api.giphy.com/v1/gifs/random?api_key=r5vlDh2ux1S015no1ORrB7jo9wUmTfHZ&rating=PG-13&tag=' + this.state.search)
       .then(response => response.json())
       .then(value =>
-        this.setState({ Gif: value.data.image_url })
+        this.setState({ Gif: value.data.image_url }),
       )
+
+
 
       .catch((error) => {
         console.error(error);
       });
+
 
     Image.getSize(this.state.Gif, (width, height) => { this.setState({ OriginalWidth: width, OriginalHeight: height }) });
 
@@ -106,8 +109,7 @@ export default class LinksScreen extends React.Component {
         })
     } else {
       CameraRoll.saveToCameraRoll(url)
-        .then(alert('Erledigt!', 'Das GIF wurde erfolgreich heruntergeladen'))
-      ToastAndroid.show("Image saved Successfully.", ToastAndroid.SHORT)
+        .then(alert('Erledigt!', 'Das GIF '))
     }
   }
 
@@ -125,7 +127,7 @@ export default class LinksScreen extends React.Component {
         <SearchBar
           round
           lighttheme
-          placeholder="Type Here..."
+          placeholder="Filter..."
           onChangeText={this.updateSearch}
           value={this.search}
         />
@@ -136,15 +138,14 @@ export default class LinksScreen extends React.Component {
             <Image source={require('./Norris.gif')} />
           </View>
 
-          <View>
+          <View style={styles.ImageWrapper}>
             <Image
               source={{ uri: this.state.Gif }}
-              resizeMode="cover"
-              style={{ width: this.state.OriginalWidth, height: this.state.OriginalHeight }}
+              style={styles.images}
             />
           </View>
 
-          <View style={styles.savebutton}>
+          {/*<View style={styles.savebutton}>
             {this.state.previousButton ?
 
               <Button
@@ -153,14 +154,14 @@ export default class LinksScreen extends React.Component {
                 accessibilityLabel="Learn more about this purple button" />
               : null}
 
-          </View>
+            </View>*/}
 
           <View style={styles.previousbutton}>
             {this.state.previousButton ?
 
               <Button
                 onPress={this._previous}
-                title="vorheriger Witz"
+                title="zurück"
                 accessibilityLabel="Learn more about this purple button" />
               : null}
 
@@ -169,7 +170,7 @@ export default class LinksScreen extends React.Component {
           <View style={styles.nextbutton}>
             <Button
               onPress={this._onPressButton}
-              title="nächster Gif"
+              title="vorwärts"
               accessibilityLabel="Learn more about this purple button" />
 
           </View>
@@ -217,6 +218,19 @@ const styles = StyleSheet.create({
   image: {
     position: 'absolute',
     top: 25
+  },
+
+  ImageWrapper: {
+
+    maxHeight: 440
+  },
+
+  images: {
+    flex: 1,
+    width: (Dimensions.get('window').width),
+    height: 200,
+    resizeMode: 'contain'
+
   },
 
   homeScreenFilename: {

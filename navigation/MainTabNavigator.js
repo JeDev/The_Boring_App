@@ -7,22 +7,19 @@ import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
+import {
+  Image,
+  Stylesheet
+
+} from 'react-native';
+
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Unnütze Fakten',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
+  tabBarIcon: <Image source={require('./Icon/Gif.png')} style={{ width: 30, height: 30 }} />,
 };
 
 const LinksStack = createStackNavigator({
@@ -31,12 +28,7 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
   tabBarLabel: 'GIFs',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
+  tabBarIcon: <Image source={require('./Icon/Gifi.png')} style={{ width: 30, height: 30 }} />,
 };
 
 const SettingsStack = createStackNavigator({
@@ -44,13 +36,9 @@ const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Chuck Norris',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
+  tabBarLabel: 'Chuck Norris Facts',
+  tabBarIcon: <Image source={require('./Icon/chuck.png')} style={{ width: 32, height: 32 }} />,
+
 };
 
 export default createBottomTabNavigator({

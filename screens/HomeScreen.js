@@ -22,7 +22,7 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fact: '',
+      fact: 'Start',
       previousFact: '',
       previousButton: false
     };
@@ -77,7 +77,7 @@ export default class HomeScreen extends React.Component {
 
               <Button
                 onPress={this._previous}
-                title="vorheriger Fakt"
+                title="zurück"
                 accessibilityLabel="Learn more about this purple button" />
               : null}
 
@@ -86,7 +86,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.nextbutton}>
             <Button
               onPress={this._onPressButton}
-              title="nächster Fakt"
+              title="vorwärts"
               accessibilityLabel="Learn more about this purple button" />
           </View>
         </ScrollView>

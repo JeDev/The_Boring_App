@@ -21,7 +21,7 @@ export default class SettingsScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      joke: '',
+      joke: 'Start',
       previousJoke: '',
       previousButton: false
     };
@@ -78,7 +78,7 @@ export default class SettingsScreen extends React.Component {
 
               <Button
                 onPress={this._previous}
-                title="vorheriger Witz"
+                title="zurück"
                 accessibilityLabel="Learn more about this purple button" />
               : null}
 
@@ -87,7 +87,7 @@ export default class SettingsScreen extends React.Component {
           <View style={styles.nextbutton}>
             <Button
               onPress={this._onPressButton}
-              title="nächster Witz"
+              title="vorwärts"
               accessibilityLabel="Learn more about this purple button" />
 
           </View>
